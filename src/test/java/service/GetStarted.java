@@ -2,17 +2,32 @@ package service;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utilities.BasePage;
+import pages.Onboarding;
+import pages.WelcomePage;
 
-public class GetStarted extends BasePage {
+import static org.testng.Assert.assertEquals;
+
+public class GetStarted extends BaseTest {
+
+    Onboarding onboarding;
 
     @Test
-    public void openApp(){
+    public void getStarted() throws InterruptedException {
+        acceptAlert();
+        onboarding = welcomePage.getStarted();
+        assertEquals(onboarding.getFirstSlideTitle(), "Edit PDFs");
+        swipeLeft();
+//        assertEquals(onboarding.getSecondSlideTitle(), "Welcome to PDF Extra");
+        onboarding.close();
 
-        String button = welcomePage.getButtonText();
-        Assert.assertEquals(button, "Get Started");
+        swipeLeft();
+        onboarding.close();
 
+        acceptAlert();
+        Thread.sleep(5000);
     }
+
+
 
 
 }

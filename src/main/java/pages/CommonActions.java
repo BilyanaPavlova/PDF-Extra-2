@@ -1,22 +1,22 @@
-package utilities;
+package pages;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.BasePage;
 
 import java.time.Duration;
 
-public class CommonActions {
+public class CommonActions extends BasePage {
 
-    private IOSDriver driver;
 
-    public CommonActions(IOSDriver driver) {
-        this.driver = driver;
-    }
 
     private TouchAction touchAction;
 
@@ -31,6 +31,7 @@ public class CommonActions {
 
         public void swipeLeft(){
             getScreenSize();
+//            touchAction = new TouchAction(driver);
             touchAction = new TouchAction(driver);
             // Perform the swipe gesture
             touchAction.press(PointOption.point(startX, startY))
@@ -44,6 +45,7 @@ public class CommonActions {
     // generic method - can return whatever object we pass as a .class
     public <T> T swipeLeft(Class<T> pageClass) {
         getScreenSize();
+//        touchAction = new TouchAction(driver);
         touchAction = new TouchAction(driver);
         // Perform the swipe gesture
         touchAction.press(PointOption.point(startX, startY))
@@ -102,10 +104,13 @@ public class CommonActions {
         closeElement.click();
     }
 
-    public void waitToElement(WebElement element){
-            wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+    public void waitToElement(WebElement element, IOSDriver driver){
+            wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement ele = wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+
+
 
 
 

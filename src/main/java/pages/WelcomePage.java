@@ -5,13 +5,13 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utilities.CommonActions;
 
 public class WelcomePage extends CommonActions {
 
     IOSDriver driver;
+
     public WelcomePage(IOSDriver driver) {
-        super(driver);
+        super();
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -25,11 +25,11 @@ public class WelcomePage extends CommonActions {
     @FindBy(xpath = "//XCUIElementTypeButton[@name='Get Started']")
     public WebElement getStartedButton;
 
-    public String getButtonText(){
-        return getStartedButton.getText();
+
+    public Onboarding getStarted(){
+        getStartedButton.click();
+        return new Onboarding(driver);
     }
 
-    public boolean isTitleDisplayed(){
-        return title.isDisplayed();
-    }
+
 }
